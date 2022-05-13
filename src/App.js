@@ -25,10 +25,12 @@ export default function App() {
 }
 
 const Div = styled.div`
-    /*background-color: ?;*/
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    width: 100vw;
     
     * {
         font-family: 'Roboto', sans-serif;
