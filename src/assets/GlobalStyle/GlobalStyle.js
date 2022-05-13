@@ -6,6 +6,13 @@ const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
     }
 
+    button:hover{
+        cursor: pointer;
+    }
+
+    select:hover{
+        cursor: pointer;
+    }
 `;
 
 export default GlobalStyles;

@@ -17,8 +17,8 @@ export default function CartProduct({ selectedProduct, total, setTotal }) {
                 {product.name}
             </td>
             <td>{selectedProduct.quantity}</td>
-            <td>R$ {product.price}</td>
-            <td>R$ {product.price * selectedProduct.quantity}</td>
+            <td>R$ {product.price.toFixed(2)}</td>
+            <td>R$ {(product.price * selectedProduct.quantity).toFixed(2)}</td>
         </Row>
     );
 }
@@ -31,11 +31,13 @@ const Row = styled.tr`
     td {
         vertical-align: middle;
         text-align: center;
+        padding: 5px;
     }
 
     td:first-child {
         display: flex;
         align-items: center;
         justify-content: space-evenly;
+        min-height: 115px;
     }
 `;
