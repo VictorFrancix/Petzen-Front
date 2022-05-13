@@ -79,7 +79,7 @@ export default function Login() {
                     </button>
                 </form>
 
-                <Link to="/">Primeira Vez? Cadastre-se</Link>
+                <Link to="/signup">Primeira Vez? Cadastre-se</Link>
             </>
 }
         </MainStyle>
@@ -163,14 +163,4 @@ const MainStyle = styled.main`
         font-size: 15px;
         line-height: 18px;
     }
-
-    
-    .loading {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-    }
-
-
 `;
