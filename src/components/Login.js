@@ -3,6 +3,7 @@ import { useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import Loading from "./Loading";
 
 export default function Login() {
     const [user, setUser] = useState({email: "", password: ""
@@ -30,10 +31,11 @@ export default function Login() {
             localStorage.setItem("TOKEN", token);
             console.log(token);
             navigate("/home");
+            setLoading(false);
         });
         promise.catch((err) => {
             Error(err);
-            navigate("/");
+            navigate("/login");
             setLoading(false);
             
         });
@@ -46,6 +48,8 @@ export default function Login() {
 
     return (
         <MainStyle>
+            { loading ? <Loading/> : 
+            <>
             <h1>PetZen</h1>
                 <form
                 onSubmit={(e) => sendInputData(e)}
@@ -76,6 +80,8 @@ export default function Login() {
                 </form>
 
                 <Link to="/">Primeira Vez? Cadastre-se</Link>
+            </>
+}
         </MainStyle>
     );
 }
@@ -88,14 +94,24 @@ const MainStyle = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     font-family: "Saira Stencil One", cursive;
     h1 {
         font-height: bold;
         color: #ffffff;
         font-size: 32px;
         line-height: 50px;
-        margin: 160px 0px 24px;
+        margin: -5px 0px 24px;
     }
+
+    h2 {
+        font-height: bold;
+        color: #ffffff;
+        font-size: 25px;
+        line-height: 50px;
+        margin: -5px 0px;
+    }
+
     form {
         display: flex;
         flex-direction: column;
@@ -136,7 +152,7 @@ const MainStyle = styled.main`
         border-radius: 30px;
         border: none;
         color: #000000;
-        font-size: 20px;
+        font-size: 12 px;
         margin-bottom: 13px;
     }
 
