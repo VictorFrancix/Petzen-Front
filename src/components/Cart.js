@@ -1,10 +1,11 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import CartProduct from "./CartProduct";
 import AddressForm from "./AddressForm";
+import UserContext from "./../contexts/UserContext";
 
 export default function Cart() {
     const [paymentMethod, setPaymentMethod] = useState("money");
@@ -17,45 +18,54 @@ export default function Cart() {
         number: "",
     });
     const [buttonState, setButtonState] = useState(true);
-    const cart = [
-        {
-            idProduct: "ifiweewef",
-            quantity: 1,
-        },
-        {
-            idProduct: "ifiweewef",
-            quantity: 1,
-        },
-    ];
+    const { user, setUser, Error } = useContext(UserContext);
+
+    const TOKEN = localStorage.getItem("TOKEN");
+
+    const cart = user.cart;
+    let total = user.total;
+    // const cart = [
+    //     {
+    //         idProduct: "ifiweewef",
+    //         quantity: 1,
+    //     },
+    //     {
+    //         idProduct: "ifiweewef",
+    //         quantity: 1,
+    //     },
+    // ];
     // const cart = [];
-    const idUser = "ovihfvwfiweuf";
 
     const navigate = useNavigate();
 
-    let total = 39.8;
-
     function sendSale(e) {
-        console.log("Compra finalizada")
+        console.log("Compra finalizada");
         e.preventDefault();
         total += 5;
         const sale = {
             products: cart,
             total,
             paymentMethod,
-            idUser,
+            idUser: user._id,
             address,
             time: Date.now(),
         };
 
-        const promise = axios.post("http://localhost:5000/sales", sale);
+        const config = {
+            headers: { Authorization: `Bearer ${TOKEN}` },
+        };
+
+        const promise = axios.post(
+            "https://projeto14-petzen-back.herokuapp.com/sales",
+            sale,
+            config
+        );
         promise.then((res) => {
-            //TODO: zerar carrinho do usuário!
-            navigate(`/orders/${idUser}`);
-            
+            setUser({ ...user, total: 0, cart: [] });
+            navigate(`/orders`);
         });
         promise.catch((err) => {
-            alert("Um erro aconteceu, tente novamente!");
-            console.log(`${err.response.status} - ${err.response.statusText}`);
+            Error(err);
         });
     }
 
@@ -134,13 +144,21 @@ const Main = styled.main`
 
     h2 {
         font-weight: 700;
-        font-size: 20px;
+        font-size: 35px;
         margin-bottom: 15px;
-        line-height: 48px;
+        line-height: 90px;
     }
 
     div {
         width: 100%;
+    }
+
+    .empty p {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 40px;
+        font-weight: 700;
+        font-size: 20px;
     }
 
     table {
@@ -189,6 +207,9 @@ const Main = styled.main`
         margin: 10px 0 20px;
         font-size: 16px;
         height: 30px;
+        border-radius: 5px;
+        background-color: #ffffff;
+        padding: 5px;
     }
 
     .paymentMethod {
@@ -206,7 +227,7 @@ const Main = styled.main`
         height: 45px;
         border-radius: 5px;
         border: none;
-        background-color: #999999;
+        background-color: var(--purple);
         margin-bottom: 12px;
         font-size: 16px;
         color: #ffffff;

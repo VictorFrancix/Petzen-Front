@@ -1,13 +1,29 @@
 import styled from "styled-components";
+import { useState, useEffect, useContext } from "react";
+import axios from "axios";
+
+import UserContext from "./../contexts/UserContext";
 
 export default function CartProduct({ selectedProduct, total, setTotal }) {
-    const product = {
-        name: "Ração de gato",
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYQrPx5oo09BP2cmz1uBNhdb6lGd6yzDCEHg&usqp=CAU",
-        description: "Ração de gato muito boa 1 kg",
-        price: 19.9,
-        id: "ifiweewef",
-    };
+    const [product, setProduct] = useState({});
+    const { Error } = useContext(UserContext);
+    const TOKEN = localStorage.getItem("TOKEN");
+
+    useEffect(() => {
+        const config = {
+            headers: { Authorization: `Bearer ${TOKEN}` },
+        };
+        const promise = axios.get(
+            `https://projeto14-petzen-back.herokuapp.com/products/${selectedProduct.idProduct}`,
+            config
+        );
+        promise.then((res) => {
+            setProduct(res.data);
+        });
+        promise.catch((err) => {
+            Error(err);
+        });
+    }, []);
 
     total += product.price * selectedProduct.quantity;
     return (
