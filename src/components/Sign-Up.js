@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import Loading from "./Loading";
-import UserContext from "./contexts/UserContext";
+import UserContext from "./../contexts/UserContext";
 
 
 export default function SignUp() {
