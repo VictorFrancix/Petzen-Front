@@ -1,4 +1,4 @@
-import kitty from './../assets/kitty.gif';
+import kitty from './../assets/images/kitty.gif';
 
 export default function Loading() {
     return (

@@ -6,7 +6,6 @@ import styled from "styled-components";
 import Loading from "./Loading";
 import UserContext from "./../contexts/UserContext";
 
-
 export default function SignUp() {
     const {Error} = useContext(UserContext);
     const [loading, setLoading] = useState(false);

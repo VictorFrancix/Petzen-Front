@@ -2,11 +2,12 @@ import "./assets/css/reset.css";
 import styled from "styled-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import UserContext from "./../contexts/UserContext.js";
+
 
 import TestPage from "./components/TestPage.js";
 import Login from "./components/Login";
 import SignUp from "./components/Sign-Up";
+import UserContext from "./contexts/UserContext";
 
 
 export default function App() {
