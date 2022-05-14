@@ -1,12 +1,14 @@
 import axios from "axios";
+import { useState, useContext} from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import styled from "styled-components";
 
 import Loading from "./Loading";
+import UserContext from "./contexts/UserContext";
 
 
 export default function SignUp() {
+    const {Error} = useContext(UserContext);
     const [loading, setLoading] = useState(false);
     const [registerUser, setregisterUser] = useState({
         name: "",
@@ -16,11 +18,6 @@ export default function SignUp() {
     });
     const navigate = useNavigate();
 
-    function Error(e) {
-        console.log(`${e.response.status} - ${e.response.statusText}`);
-        alert("Um erro aconteceu, tente novamente");
-      }
-    
 
     function register(registerUser) {
         setLoading(true);
@@ -144,7 +141,7 @@ button {
     font-family: "Saira Stencil One", cursive;
     background-color: #c747fc;
     border: none;
-    width: 60%;
+    width: 31%;
     height: 54px;
     color: #ffffff;
     font-weight: 700;

@@ -1,20 +1,19 @@
 import axios from "axios";
-import { useState} from "react";
+import { useState, useContext} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import Loading from "./Loading";
+import UserContext from "./contexts/UserContext";
 
 export default function Login() {
+    const {Error} = useContext(UserContext);
     const [user, setUser] = useState({email: "", password: ""
 });
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    function Error(e) {
-        console.log(`${e.response.status} - ${e.response.statusText}`);
-        alert("Um erro aconteceu, tente novamente");
-      }
+    
     
     function enableButton(){
         if(user.email.length > 0 && user.password.length > 0){
@@ -122,7 +121,7 @@ const MainStyle = styled.main`
         font-family: "Saira Stencil One", cursive;
         background-color: #c747fc;
         border: none;
-        width: 60%;
+        width: 31%;
         height: 54px;
         color: #ffffff;
         font-weight: 700;
