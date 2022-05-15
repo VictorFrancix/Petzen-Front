@@ -30,6 +30,7 @@ const Div = styled.div`
 
     background-color: lightgoldenrodyellow;
     border-radius: 5px;
+    width: 100%;
     margin: 10px 0 10px 0;
     padding: 15px 10px 15px 15px;
     display: flex;

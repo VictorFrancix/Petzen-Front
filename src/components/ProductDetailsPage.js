@@ -12,5 +12,9 @@ export default function ProductDetailsPage(){
 }
 
 const Div = styled.div`
-
+    background-color: #fa9a39;
+    height: 100%;
+    width: 100vw;
+    padding: 70px 20px 20px 20px;
+    overflow-y: scroll;
 `;

@@ -2,8 +2,9 @@ import styled from "styled-components";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard.js";
+import Loading from "./Loading.js";
 
-export default function ProductsPage(){
+export default function ProductsPage() {
 
     const [products, setProducts] = useState([]);
     const token = localStorage.getItem("TOKEN");
@@ -16,15 +17,15 @@ export default function ProductsPage(){
         };
         request(config);
         // eslint-disable-next-line
-    },[]);
+    }, []);
 
-    async function request(config){
+    async function request(config) {
         try {
             const response = await axios.get("https://projeto14-petzen-back.herokuapp.com/products", config);
             setProducts(response.data);
             console.log(response.data);
 
-        } catch(e) {
+        } catch (e) {
             window.alert("Erro na obtenção dos dados.");
             console.log(e);
         }
@@ -33,12 +34,12 @@ export default function ProductsPage(){
     return products.length > 0 ? (
         <Div>
             {
-                products.map(product => { 
+                products.map(product => {
                     const { _id } = product;
 
                     return (
-                        <ProductCard 
-                            key={_id} 
+                        <ProductCard
+                            key={_id}
                             product={product}
                         />
                     );
@@ -47,7 +48,9 @@ export default function ProductsPage(){
         </Div>
     ) : (
         <Div>
-            <p>Carregando...</p>
+            <div className="loading-container">
+                <Loading />
+            </div>
         </Div>
     )
 }
@@ -59,4 +62,13 @@ const Div = styled.div`
     padding: 70px 20px 20px 20px;
     overflow-y: scroll;
     
+    .loading-container {
+        height: 100%;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
 `;

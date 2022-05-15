@@ -9,6 +9,7 @@ export default function Menu() {
 
     const { user } = useContext(UserContext);
 
+    // FIXME: change method to check if user is logged in
     function checkUserLoggedIn(user) {
         for (const property in user) {
             return true;
