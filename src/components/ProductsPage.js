@@ -7,23 +7,16 @@ import Loading from "./Loading.js";
 export default function ProductsPage() {
 
     const [products, setProducts] = useState([]);
-    const token = localStorage.getItem("TOKEN");
 
     useEffect(() => {
-        const config = {
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
-        };
-        request(config);
+        request();
         // eslint-disable-next-line
     }, []);
 
-    async function request(config) {
+    async function request() {
         try {
-            const response = await axios.get("https://projeto14-petzen-back.herokuapp.com/products", config);
+            const response = await axios.get("https://projeto14-petzen-back.herokuapp.com/products");
             setProducts(response.data);
-            console.log(response.data);
 
         } catch (e) {
             window.alert("Erro na obtenção dos dados.");
