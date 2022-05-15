@@ -24,31 +24,19 @@ export default function Cart() {
 
     const cart = user.cart;
     let total = user.total;
-    // const cart = [
-    //     {
-    //         idProduct: "ifiweewef",
-    //         quantity: 1,
-    //     },
-    //     {
-    //         idProduct: "ifiweewef",
-    //         quantity: 1,
-    //     },
-    // ];
-    // const cart = [];
-
+    
     const navigate = useNavigate();
 
     function sendSale(e) {
-        console.log("Compra finalizada");
         e.preventDefault();
         total += 5;
         const sale = {
             products: cart,
             total,
             paymentMethod,
-            idUser: user._id,
             address,
             time: Date.now(),
+            idUser: "ovihfvwfiweuf",
         };
 
         const config = {
@@ -130,8 +118,7 @@ export default function Cart() {
                     <p>Você não adicionou nenhum produto ao seu carrinho!</p>
                 </div>
             )}
-            <button>Continuar comprando</button>{" "}
-            {/*Voltar para tela de produto */}
+            <button onClick={() => navigate('/products')}>Continuar comprando</button>
         </Main>
     );
 }
@@ -141,11 +128,13 @@ const Main = styled.main`
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    background-color: var(--orange);
+    height: 100vh;
 
     h2 {
         font-weight: 700;
         font-size: 35px;
-        margin-bottom: 15px;
+        margin: 30px 0 15px;
         line-height: 90px;
     }
 
@@ -172,7 +161,8 @@ const Main = styled.main`
 
     tr {
         height: 115px;
-        border: solid 1px;
+        border: solid 2px;
+        background-color: #d6d4d0;
     }
 
     th {

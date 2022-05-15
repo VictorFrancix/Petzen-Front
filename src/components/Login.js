@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useContext} from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -7,80 +7,80 @@ import Loading from "./Loading";
 import UserContext from "./../contexts/UserContext";
 
 export default function Login() {
-    const {Error} = useContext(UserContext);
-    const [user, setUser] = useState({email: "", password: ""
-});
+    const { user, setUser, Error } = useContext(UserContext);
+    const [login, setLogin] = useState({ email: "", password: "" });
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    
-    
-    function enableButton(){
-        if(user.email.length > 0 && user.password.length > 0){
+    function enableButton() {
+        if (login.email.length > 0 && login.password.length > 0) {
             return false;
         }
         return true;
     }
 
-    function requestAcess(userObj) {
+    function requestAcess(loginObj) {
         setLoading(true);
-        const promise = axios.post("https://projeto14-petzen-back.herokuapp.com/login", userObj);
-        promise.then((res)=>{
+        const promise = axios.post(
+            "https://projeto14-petzen-back.herokuapp.com/login",
+            loginObj
+        );
+        promise.then((res) => {
             const token = res.data;
             localStorage.setItem("TOKEN", token);
             console.log(token);
             navigate("/");
             setLoading(false);
+            setUser({ cart: [], total: 0 });
         });
         promise.catch((err) => {
             Error(err);
             navigate("/login");
             setLoading(false);
-            
         });
     }
 
-    function sendInputData(e){
+    function sendInputData(e) {
         e.preventDefault();
-        requestAcess(user);
+        requestAcess(login);
     }
 
     return (
         <MainStyle>
-            { loading ? <Loading/> : 
-            <>
-            <h1>PetZen</h1>
-                <form
-                onSubmit={(e) => sendInputData(e)}
-                >
-                    <input
-                        type="email"
-                        placeholder="E-mail"
-                        value={user.email}
-                        disabled={loading}
-                        onChange={(e) =>
-                            setUser({ ...user, email: e.target.value })
-                        }
-                        required
-                    />
-                    <input
-                        type="password"
-                        placeholder="Senha"
-                        value={user.password}
-                        disabled={loading}
-                        onChange={(e) =>
-                            setUser({ ...user, password: e.target.value })
-                        }
-                        required
-                    />
-                    <button disabled= {() => enableButton()}type="submit">
-                        Entrar
-                    </button>
-                </form>
+            {loading ? (
+                <Loading />
+            ) : (
+                <>
+                    <h1>PetZen</h1>
+                    <form onSubmit={(e) => sendInputData(e)}>
+                        <input
+                            type="email"
+                            placeholder="E-mail"
+                            value={login.email}
+                            disabled={loading}
+                            onChange={(e) =>
+                                setLogin({ ...login, email: e.target.value })
+                            }
+                            required
+                        />
+                        <input
+                            type="password"
+                            placeholder="Senha"
+                            value={login.password}
+                            disabled={loading}
+                            onChange={(e) =>
+                                setLogin({ ...login, password: e.target.value })
+                            }
+                            required
+                        />
+                        <button disabled={() => enableButton()} type="submit">
+                            Entrar
+                        </button>
+                    </form>
 
-                <Link to="/signup">Primeira Vez? Cadastre-se</Link>
-            </>
-}
+                    <Link to="/signup">Primeira Vez? Cadastre-se</Link>
+                </>
+            )}
         </MainStyle>
     );
 }
@@ -89,7 +89,7 @@ const MainStyle = styled.main`
     display: flex;
     width: 100%;
     height: 100vh;
-    background-color:  #fa9a39;
+    background-color: #fa9a39;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -134,16 +134,16 @@ const MainStyle = styled.main`
         border-radius: 30px;
     }
 
-    button:hover{
+    button:hover {
         cursor: pointer;
     }
 
-    button:disabled{
+    button:disabled {
         background-color: #a09da1;
         color: #ffffff00;
     }
 
-    input{
+    input {
         width: 60%;
         max-width: 470px;
         height: 58px;
@@ -156,7 +156,7 @@ const MainStyle = styled.main`
     }
 
     a {
-        color: #FFFFFF;
+        color: #ffffff;
         text-decoration: none;
         font-weight: 700;
         font-size: 15px;

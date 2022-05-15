@@ -1,30 +1,50 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import styled from "styled-components";
+
+import Order from "./Order";
+import UserContext from "./../contexts/UserContext";
 
 export default function Orders() {
     const [orders, setOrders] = useState([]);
-    const idUser = "ovihfvwfiweuf";
+    const TOKEN = localStorage.getItem("TOKEN");
+    const { Error } = useContext(UserContext);
 
     useEffect(() => {
-        const promise = axios.get(`http://localhost:5000/sales/${idUser}`);
+        const config = {
+            headers: { Authorization: `Bearer ${TOKEN}` },
+        };
+        const promise = axios.get(`https://projeto14-petzen-back.herokuapp.com/sales`, config);
         promise.then((res) => {
-            setOrders(res.data);
+            setOrders(res.data.reverse());
             console.log(res.data);
         });
         promise.catch((err) => {
-            console.log(`${err.response.status} - ${err.response.statusText}`);
-            alert("Um erro aconteceu, tente novamente!");
+            Error(err);
         });
     }, []);
 
     return (
-        <>
+        <Main>
             <h2>Meus pedidos</h2>
             {orders.length > 0 ? (
-                <p>Seus pedidos estão no console!</p>
+                orders.map((order) => <Order order={order} />)
             ) : (
-                <p>Você não tem nenhum pedido</p>
+                <p>Você não tem nenhum pedido!</p>
             )}
-        </>
+        </Main>
     );
 }
+
+const Main = styled.main`
+    margin-top: 60px;
+    padding: 18px;
+    background-color: var(--orange);
+    height: 100vh;
+
+    h2 {
+        font-weight: 700;
+        font-size: 25px;
+        margin-bottom: 15px;
+    }
+`;

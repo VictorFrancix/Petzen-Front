@@ -25,7 +25,6 @@ export default function App() {
     }
 
     return (
-        <Div>
             <UserContext.Provider value={{
                 user,
                 setUser,
@@ -45,20 +44,5 @@ export default function App() {
                     </Routes>
                 </BrowserRouter>
             </UserContext.Provider>
-        </Div>
-    )
+    );
 }
-
-const Div = styled.div`
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-
-    * {
-        font-family: "Roboto", sans-serif;
-        box-sizing: border-box;
-    }
-`;
