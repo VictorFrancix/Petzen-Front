@@ -26,29 +26,30 @@ export default function Cart() {
     let total = user.total;
     // const cart = [
     //     {
-    //         idProduct: "ifiweewef",
+    //         idProduct: "627ee73178089d33bbe35119",
     //         quantity: 1,
     //     },
     //     {
-    //         idProduct: "ifiweewef",
-    //         quantity: 1,
+    //         idProduct: "627edf7278089d33bbe35113",
+    //         quantity: 2,
     //     },
     // ];
+
+    // let total = 92.8;
     // const cart = [];
 
     const navigate = useNavigate();
 
     function sendSale(e) {
-        console.log("Compra finalizada");
         e.preventDefault();
         total += 5;
         const sale = {
             products: cart,
             total,
             paymentMethod,
-            idUser: user._id,
             address,
             time: Date.now(),
+            idUser: "ovihfvwfiweuf",
         };
 
         const config = {
@@ -57,8 +58,8 @@ export default function Cart() {
 
         const promise = axios.post(
             "https://projeto14-petzen-back.herokuapp.com/sales",
-            sale,
-            config
+            sale
+            // config
         );
         promise.then((res) => {
             setUser({ ...user, total: 0, cart: [] });
@@ -141,11 +142,12 @@ const Main = styled.main`
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    background-color: var(--orange);
 
     h2 {
         font-weight: 700;
         font-size: 35px;
-        margin-bottom: 15px;
+        margin: 30px 0 15px;
         line-height: 90px;
     }
 
@@ -172,7 +174,8 @@ const Main = styled.main`
 
     tr {
         height: 115px;
-        border: solid 1px;
+        border: solid 2px;
+        background-color: #d6d4d0;
     }
 
     th {

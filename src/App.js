@@ -17,7 +17,7 @@ export default function App() {
     }
 
     return (
-        <Div>
+        // <Div>
             <UserContext.Provider value={{ user, setUser, Error }}>
                 <BrowserRouter>
                     <GlobalStyle />
@@ -29,20 +29,20 @@ export default function App() {
                     </Routes>
                 </BrowserRouter>
             </UserContext.Provider>
-        </Div>
+        // </Div>
     );
 }
 
-const Div = styled.div`
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
+// const Div = styled.div`
+//     background-color: white;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     height: 100vh;
+//     width: 100vw;
 
-    * {
-        font-family: "Roboto", sans-serif;
-        box-sizing: border-box;
-    }
-`;
+//     * {
+//         font-family: "Roboto", sans-serif;
+//         box-sizing: border-box;
+//     }
+// `;

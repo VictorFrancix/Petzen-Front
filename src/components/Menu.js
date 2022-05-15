@@ -107,6 +107,7 @@ const Div = styled.div`
     background-color: lightgray;
     padding: 10px;
     box-shadow: 0 0 10px 0;
+    z-index: 2;
 
     .menu-icon ion-icon {
         font-size: 32px;
