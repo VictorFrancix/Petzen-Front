@@ -29,7 +29,7 @@ export default function Login() {
             const token = res.data;
             localStorage.setItem("TOKEN", token);
             console.log(token);
-            navigate("/products");
+            navigate("/");
             setLoading(false);
         });
         promise.catch((err) => {
