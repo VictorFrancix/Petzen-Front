@@ -11,6 +11,7 @@ import Menu from "./components/Menu.js";
 import Cart from "./components/Cart";
 import Orders from "./components/Orders";
 import ProductsPage from "./components/ProductsPage.js";
+import ProductDetailsPage from "./components/ProductDetailsPage.js";
 import GlobalStyle from "./assets/GlobalStyle/GlobalStyle";
 import UserContext from "./contexts/UserContext";
 
@@ -40,6 +41,7 @@ export default function App() {
                         <Route path="/cart" element={<Cart />} />
                         <Route path="/orders" element={<Orders />} />
                         <Route path="/products" element={<ProductsPage />} />
+                        <Route path="/products/:productId" element={<ProductDetailsPage />} />
                     </Routes>
                 </BrowserRouter>
             </UserContext.Provider>

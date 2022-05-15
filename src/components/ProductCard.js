@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export default function ProductCard(props) {
-    // eslint-disable-next-line
-    const { name, image, description, price, storeName } = props.product;
+    const { _id, name, image, price, storeName } = props.product;
 
     const formattedPrice = price.$numberDecimal.replace(".", ",");
+
     return (
         <Div>
             <img src={image} alt={name} />
@@ -14,10 +15,12 @@ export default function ProductCard(props) {
                     <p className="price">R$ {formattedPrice}</p>
                     <p className="store">Loja: {storeName}</p>
                 </div>
-                <div className="add-icon">
-                    <ion-icon name="add-circle-outline"></ion-icon>
-                    <p>Mais informações</p>
-                </div>
+                <Link to={`/products/${_id}`}>
+                    <div className="add-icon">
+                        <ion-icon name="add-circle-outline"></ion-icon>
+                        <p>Mais informações</p>
+                    </div>
+                </Link>
             </div>
         </Div>
     );
