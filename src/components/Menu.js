@@ -1,23 +1,19 @@
 import styled from "styled-components";
-import { useState, useContext } from "react";
-import UserContext from "./../contexts/UserContext.js";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Menu() {
 
     const [sidebar, setSidebar] = useState(false);
 
-    const { user } = useContext(UserContext);
+    const token = localStorage.getItem("TOKEN");
 
-    function checkUserLoggedIn(user) {
-        for (const property in user) {
-            return true;
-        }
-        return false;
+    function checkUserLoggedIn(token) {
+        return token ? true : false;
     }
 
     function renderOptions() {
-        return checkUserLoggedIn(user) ? (
+        return checkUserLoggedIn(token) ? (
             <ul>
                 <li onClick={() => goTo("products")}>
                     <div className="options-icon">
@@ -104,9 +100,10 @@ const Div = styled.div`
     left: 0;
     height: 50px;
     width: 100%;
-    background-color: lightgray;
+    background-color: #BA68C8;
     padding: 10px;
     box-shadow: 0 0 10px 0;
+    z-index: 2;
 
     .menu-icon ion-icon {
         font-size: 32px;
@@ -114,7 +111,7 @@ const Div = styled.div`
     }
 
     .container-sidebar {
-        background-color: gray;
+        background-color: lightgray;
         position: fixed;
         height: 100%;
         top: 0px;

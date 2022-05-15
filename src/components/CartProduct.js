@@ -23,6 +23,7 @@ export default function CartProduct({ selectedProduct, total, setTotal }) {
         promise.catch((err) => {
             Error(err);
         });
+        // eslint-disable-next-line
     }, []);
 
     total += product.price * selectedProduct.quantity;
