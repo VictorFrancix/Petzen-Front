@@ -24,20 +24,7 @@ export default function Cart() {
 
     const cart = user.cart;
     let total = user.total;
-    // const cart = [
-    //     {
-    //         idProduct: "627ee73178089d33bbe35119",
-    //         quantity: 1,
-    //     },
-    //     {
-    //         idProduct: "627edf7278089d33bbe35113",
-    //         quantity: 2,
-    //     },
-    // ];
-
-    // let total = 92.8;
-    // const cart = [];
-
+    
     const navigate = useNavigate();
 
     function sendSale(e) {
@@ -58,8 +45,8 @@ export default function Cart() {
 
         const promise = axios.post(
             "https://projeto14-petzen-back.herokuapp.com/sales",
-            sale
-            // config
+            sale,
+            config
         );
         promise.then((res) => {
             setUser({ ...user, total: 0, cart: [] });
@@ -131,8 +118,7 @@ export default function Cart() {
                     <p>Você não adicionou nenhum produto ao seu carrinho!</p>
                 </div>
             )}
-            <button>Continuar comprando</button>{" "}
-            {/*Voltar para tela de produto */}
+            <button onClick={() => navigate('/products')}>Continuar comprando</button>
         </Main>
     );
 }
@@ -143,6 +129,7 @@ const Main = styled.main`
     align-items: center;
     padding: 20px;
     background-color: var(--orange);
+    height: 100vh;
 
     h2 {
         font-weight: 700;

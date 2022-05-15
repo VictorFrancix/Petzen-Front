@@ -18,6 +18,7 @@ export default function CartProduct({ selectedProduct }) {
         promise.catch((err) => {
             Error(err);
         });
+        // eslint-disable-next-line
     }, []);
 
     return (

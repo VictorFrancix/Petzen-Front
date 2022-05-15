@@ -40,6 +40,7 @@ const Main = styled.main`
     margin-top: 60px;
     padding: 18px;
     background-color: var(--orange);
+    height: 100vh;
 
     h2 {
         font-weight: 700;
