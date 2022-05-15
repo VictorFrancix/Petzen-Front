@@ -29,7 +29,7 @@ export default function Login() {
             const token = res.data;
             localStorage.setItem("TOKEN", token);
             console.log(token);
-            navigate("/home");
+            navigate("/products");
             setLoading(false);
         });
         promise.catch((err) => {
@@ -42,7 +42,7 @@ export default function Login() {
 
     function sendInputData(e){
         e.preventDefault();
-        requestAcess(user)
+        requestAcess(user);
     }
 
     return (
@@ -96,7 +96,7 @@ const MainStyle = styled.main`
     justify-content: center;
     font-family: "Saira Stencil One", cursive;
     h1 {
-        font-height: bold;
+        font-weight: bold;
         color: #ffffff;
         font-size: 32px;
         line-height: 50px;
@@ -104,7 +104,7 @@ const MainStyle = styled.main`
     }
 
     h2 {
-        font-height: bold;
+        font-weight: bold;
         color: #ffffff;
         font-size: 25px;
         line-height: 50px;
