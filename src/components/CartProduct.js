@@ -4,17 +4,19 @@ import axios from "axios";
 
 import UserContext from "./../contexts/UserContext";
 
-export default function CartProduct({ selectedProduct }) {
+export default function CartProduct({ selectedProduct, index }) {
     const [product, setProduct] = useState({});
     const { Error } = useContext(UserContext);
 
     useEffect(() => {
-        console.log("selectedProduct: ", selectedProduct);
         const promise = axios.get(
             `https://projeto14-petzen-back.herokuapp.com/products/${selectedProduct.product}`
         );
         promise.then((res) => {
-            setProduct({...res.data, price: parseFloat(res.data.price.$numberDecimal)});
+            setProduct({
+                ...res.data,
+                price: parseFloat(res.data.price.$numberDecimal),
+            });
         });
         promise.catch((err) => {
             Error(err);
@@ -22,25 +24,49 @@ export default function CartProduct({ selectedProduct }) {
         // eslint-disable-next-line
     }, []);
 
+    function removeProduct() {
+        if (window.confirm("Deseja remover esse produto do seu carrinho?")) {
+            let user = JSON.parse(localStorage.getItem("USER"));
+            const cart = user.cart;
+            cart.splice(index, 1);
+            user.total -= product.price * selectedProduct.quantity;
+            localStorage.setItem("USER", JSON.stringify(user));
+            document.location.reload();
+        }
+    }
+
     return (
         <Row>
             {product.price ? (
                 <>
-                <td>
-                    <img src={product.image} alt={product.name} />
-                    {product.name}
-                </td>
-                <td>{selectedProduct.quantity}</td>
-                <td>R$ {product.price.toFixed(2)}</td>
-                <td>R$ {(product.price * selectedProduct.quantity).toFixed(2)}</td>
-                </>
-            ):(<></>)}
+                    <td>
+                        <img src={product.image} alt={product.name} />
+                        {product.name}
+                    </td>
+                    <td>{selectedProduct.quantity}</td>
+                    <td>R$ {product.price.toFixed(2)}</td>
+                    <td>
+                        R${" "}
+                        {(product.price * selectedProduct.quantity).toFixed(2)}
+                    </td>
+                    <div className="trash">
+                        <ion-icon
+                            name="trash-outline"
+                            onClick={removeProduct}
+                        ></ion-icon>
 
+                    </div>
+                </>
+            ) : (
+                <></>
+            )}
         </Row>
     );
 }
 
 const Row = styled.tr`
+    position: relative;
+
     img {
         max-width: 100px;
         width: auto;
@@ -60,5 +86,13 @@ const Row = styled.tr`
         align-items: center;
         justify-content: space-evenly;
         min-height: 115px;
+    }
+
+    .trash{
+        position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: fit-content;
+    font-size: 20px;
     }
 `;
