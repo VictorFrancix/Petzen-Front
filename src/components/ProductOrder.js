@@ -29,17 +29,19 @@ export default function ProductOrder({ product, showDetails }) {
             {showDetails ? (
                 <>
                     <img src={productInfo.image} alt={productInfo.name} />
-            <div>
-                <p>{productInfo.name}</p>
-                <p>
-                    {product.quantity} unidade{product.quantity > 1 ? "s" : ""}
-                </p>
-            </div>
+                    <div>
+                        <p>{productInfo.name}</p>
+                        <p>
+                            {product.quantity} unidade{product.quantity > 1 ? "s" : ""}
+                        </p>
+                    </div>
                 </>
-            ):(
-                <p>{productInfo.name}</p>
+            ) : (
+                <div className="product-title">
+                    <p>{productInfo.name}</p>
+                </div>
             )}
-            
+
         </Details>
     );
 }
@@ -48,7 +50,8 @@ const Details = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin: 0 15px 15px 0px;
+    margin: 0 15px 0 15px;
+    width: 100%;
 
     img {
         width: 60px;
@@ -57,10 +60,23 @@ const Details = styled.div`
 
     p {
         font-size: 16px;
-        line-height: 28px;
+        line-height: 20px;
     }
 
     & > p {
         line-height: 16px;
+    }
+
+    .product-title {
+        width: 100%;
+        background-color: #E1BEE7;
+        padding: 6px 6px 6px 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .product-title > p {
+        font-weight: 400;
+        font-size: 15px;
     }
 `;
