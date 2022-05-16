@@ -10,7 +10,7 @@ export default function CartProduct({ selectedProduct }) {
 
     useEffect(() => {
         const promise = axios.get(
-            `https://projeto14-petzen-back.herokuapp.com/products/${selectedProduct.productId}`
+            `https://projeto14-petzen-back.herokuapp.com/products/${selectedProduct.idProduct}`
         );
         promise.then((res) => {
             setProduct({...res.data, price: parseFloat(res.data.price.$numberDecimal)});
