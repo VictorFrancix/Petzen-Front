@@ -15,8 +15,8 @@ export default function ProductsPage() {
 
     async function request() {
         try {
-            // const response = await axios.get("https://projeto14-petzen-back.herokuapp.com/products");
-            const response = await axios.get("http://localhost:5000/products");
+            const response = await axios.get("https://projeto14-petzen-back.herokuapp.com/products");
+            //const response = await axios.get("http://localhost:5000/products");
             setProducts(response.data);
 
         } catch (e) {

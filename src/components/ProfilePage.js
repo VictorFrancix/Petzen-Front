@@ -35,18 +35,22 @@ export default function Profile() {
                 headers: { Authorization: `Bearer ${TOKEN}` },
             };
             try {
-                // const user = await axios.get(
-                //     "https://projeto14-petzen-back.herokuapp.com/users",
-                //     config
-                // );
                 const user = await axios.get(
-                    "http://localhost:5000/users",
+                    "https://projeto14-petzen-back.herokuapp.com/users",
                     config
                 );
+                //const user = await axios.get(
+                //    "http://localhost:5000/users",
+                //    config
+                //);
                 const orders = await axios.get(
-                    "http://localhost:5000/sales",
+                    "https://projeto14-petzen-back.herokuapp.com/sales",
                     config
                 );
+                //const orders = await axios.get(
+                //    "http://localhost:5000/sales",
+                //    config
+                //);
                 let lastOrder =
                     orders.data.length > 0
                         ? orders.data[orders.data.length - 1]
@@ -74,16 +78,16 @@ export default function Profile() {
         if (password === "" || password === null) return;
         newUser.password = password;
 
-        // const promise = axios.put(
-        //     "https://projeto14-petzen-back.herokuapp.com/users",
-        //     newUser,
-        //     config
-        // );
         const promise = axios.put(
-            "http://localhost:5000/users",
+            "https://projeto14-petzen-back.herokuapp.com/users",
             newUser,
             config
         );
+        //const promise = axios.put(
+        //    "http://localhost:5000/users",
+        //    newUser,
+        //    config
+        //);
         promise.then(() => {
             window.location.reload(false);
         });
@@ -112,8 +116,8 @@ export default function Profile() {
                         profile={profile}
                     />
                     {newUser.change.name ||
-                    newUser.change.email ||
-                    newUser.change.password ? (
+                        newUser.change.email ||
+                        newUser.change.password ? (
                         <button onClick={editProfile}>Atualizar perfil</button>
                     ) : (
                         <></>
@@ -123,7 +127,7 @@ export default function Profile() {
                         <p>
                             <span>Último pedido:</span>
                         </p>
-                        {}
+                        { }
                         <Order order={profile.lastOrder} />
 
                         <button

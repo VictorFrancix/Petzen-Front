@@ -9,12 +9,12 @@ export default function ProductOrder({ product, showDetails }) {
     const { Error } = useContext(UserContext);
 
     useEffect(() => {
-        // const promise = axios.get(
-        //     `https://projeto14-petzen-back.herokuapp.com/products/${product.idProduct}`
-        // );
         const promise = axios.get(
-            `http://localhost:5000/products/${product.product}`
+            `https://projeto14-petzen-back.herokuapp.com/products/${product.product}`
         );
+        //const promise = axios.get(
+        //    `http://localhost:5000/products/${product.product}`
+        //);
         promise.then((res) => {
             setProductInfo(res.data);
         });
