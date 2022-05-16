@@ -27,8 +27,9 @@ export default function Login() {
             loginObj
         );
         promise.then((res) => {
-            const token = res.data;
+            const {token, name} = res.data;
             localStorage.setItem("TOKEN", token);
+            localStorage.setItem("NAME", name);
             console.log(token);
             navigate("/");
             setLoading(false);
