@@ -59,10 +59,12 @@ export default function Order({ order }) {
                         </p>
                         <p>CEP: {order.address.CEP}</p>
                     </div>
-                    <p className="total">
-                        <span>Total: </span>R$ {order.total.toFixed(2)}
-                    </p>
-                    <p><span>Pagamento: </span>{paymentMethod_ptbr}</p>
+                    <div className="total-payment-container">
+                        <p className="total">
+                            <span>Total: </span>R$ {order.total.toFixed(2)}
+                        </p>
+                        <p><span>Pagamento: </span>{paymentMethod_ptbr}</p>
+                    </div>
                     <ProgressBar percent={percent}>
                         {steps.map((step) => {
                             return (
@@ -222,9 +224,17 @@ const Section = styled.section`
         width: 100%;
         display: flex;
         justify-content: center;
+        margin-top: 10px;
     }
 
     .button-details button {
         color: darkviolet;
+    }
+
+    .total-payment-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
     }
 `;

@@ -31,7 +31,7 @@ export default function ProductOrder({ product, showDetails }) {
                     <img src={productInfo.image} alt={productInfo.name} />
                     <div>
                         <p>{productInfo.name}</p>
-                        <p>
+                        <p className="quantity">
                             {product.quantity} unidade{product.quantity > 1 ? "s" : ""}
                         </p>
                     </div>
@@ -52,10 +52,13 @@ const Details = styled.div`
     align-items: center;
     margin: 0 15px 0 15px;
     width: 100%;
+    margin-bottom: 15px;
 
     img {
         width: 60px;
         margin-right: 25px;
+        border-radius: 7px;
+        box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.2);
     }
 
     p {
@@ -78,5 +81,10 @@ const Details = styled.div`
     .product-title > p {
         font-weight: 400;
         font-size: 15px;
+    }
+
+    .quantity {
+        margin-top: 5px;
+        font-weight: 300;
     }
 `;
