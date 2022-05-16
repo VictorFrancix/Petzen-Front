@@ -21,21 +21,21 @@ export default function Order({ order }) {
 
     let paymentMethod_ptbr;
 
-    if(order.paymentMethod === "money"){
+    if (order.paymentMethod === "money") {
         paymentMethod_ptbr = "Dinheiro";
-    } else if (order.paymentMethod === "debit"){
+    } else if (order.paymentMethod === "debit") {
         paymentMethod_ptbr = "Cartão de Débito";
-    } else if (order.paymentMethod === "credit"){
+    } else if (order.paymentMethod === "credit") {
         paymentMethod_ptbr = "Cartão de Crédito";
     }
 
     const steps = ["Aceito", "A caminho", "Entregue"];
 
     return order.products.length > 0 ? (
-        <Section color={order.status === "Entregue" ? "#d6d4d0" : "#d16efa"}>
+        <Section color={order.status === "Entregue" ? "#d6d4d0" : "lightgoldenrodyellow"}>
             <div className="title">
                 <h4>Pedido: {order._id}</h4>
-                <p>{dayjs(order.time).format("DD/MM/YY")}</p>
+                <p>Data: {dayjs(order.time).format("DD/MM/YY")}</p>
             </div>
             {showDetails ? (
                 <div className="details">
@@ -69,11 +69,10 @@ export default function Order({ order }) {
                                 <Step>
                                     {({ accomplished, index }) => (
                                         <div
-                                            className={`indexedStep ${
-                                                accomplished
-                                                    ? "accomplished"
-                                                    : null
-                                            }`}
+                                            className={`indexedStep ${accomplished
+                                                ? "accomplished"
+                                                : null
+                                                }`}
                                         >
                                             <div className="step"></div>
                                             <p>{step}</p>
@@ -95,18 +94,22 @@ export default function Order({ order }) {
                             />
                         );
                     })}
-                    <p className="total">
-                        <span>Total: </span>R$ {order.total.toFixed(2)}
-                    </p>
-                    <p>
-                        <span>Status: </span>
-                        {order.status}
-                    </p>
+                    <div className="total-status-container">
+                        <p className="total-status">
+                            <span>Total: </span>R$ {order.total.toFixed(2)}
+                        </p>
+                        <p className="total-status">
+                            <span>Status: </span>
+                            {order.status}
+                        </p>
+                    </div>
                 </div>
             )}
-            <button onClick={() => setShowDetails(!showDetails)}>
-                {showDetails ? "Esconder" : "Ver"} detalhes do pedido
-            </button>
+            <div className="button-details">
+                <button onClick={() => setShowDetails(!showDetails)}>
+                    {showDetails ? "Esconder" : "Ver"} detalhes do pedido
+                </button>
+            </div>
         </Section>
     ) : (
         <p>Pedido vazio!</p>
@@ -117,22 +120,29 @@ const Section = styled.section`
     margin-bottom: 20px;
     background-color: ${props => props.color};
     padding: 12px;
-    border-radius: 20px;
+    border-radius: 7px;
     word-break: break-word;
+    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.2);
+
 
     div.title {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
     }
 
     div.title h4 {
-        font-weight: 700;
         font-size: 18px;
+        line-height: 20px;
+        letter-spacing: 0.02em;
+        font-weight: 500;
+        color: #293845;
+        margin-bottom: 10px;
     }
 
-    div.title p {
+    div.title > p {
         font-size: 15px;
+        font-weight: 300;
     }
 
     div.details div.address {
@@ -189,8 +199,16 @@ const Section = styled.section`
         font-weight: 700;
     }
 
-    p.total {
+    p.total-status {
         width: 120px;
+        margin-top: 15px;
+    }
+
+    .total-status-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
     }
 
     button {
@@ -198,5 +216,15 @@ const Section = styled.section`
         background: none;
         padding: 0;
         margin-top: 8px;
+    }
+
+    .button-details {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .button-details button {
+        color: darkviolet;
     }
 `;
