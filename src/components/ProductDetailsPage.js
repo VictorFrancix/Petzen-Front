@@ -209,7 +209,7 @@ const Div = styled.div`
         margin: 25px 2px 10px 0;
         background-color: #BA68C8;
         padding: 8px 8px 8px 15px;
-        border-radius: 5px 5px 0 0;
+        border-radius: 6px 6px 0 0;
     }
 
     .container-description p:last-of-type {

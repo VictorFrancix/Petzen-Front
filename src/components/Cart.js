@@ -93,7 +93,7 @@ export default function Cart() {
                     </p>
                     <section>
                         <form onSubmit={(e) => sendSale(e)}>
-                            <label htmlFor="paymentMethod">
+                            <label className="payment-method-header" htmlFor="paymentMethod">
                                 Método de pagamento:{" "}
                             </label>
                             <select
@@ -110,7 +110,7 @@ export default function Cart() {
                                 </option>
                                 <option value="debit">Cartão de débito</option>
                             </select>
-                            <p>Endereço de entrega:</p>
+                            <p className="adress">Endereço de entrega:</p>
                             <AddressForm
                                 address={address}
                                 setAddress={setAddress}
@@ -140,10 +140,10 @@ const Main = styled.main`
     height: 100vh;
 
     h2 {
-        font-weight: 700;
-        font-size: 35px;
-        margin: 30px 0 15px;
-        line-height: 90px;
+        font-size: 25px;
+        line-height: 20px;
+        font-weight: 500;
+        margin: 50px 0 15px 0;
     }
 
     div {
@@ -170,7 +170,7 @@ const Main = styled.main`
     tr {
         height: 115px;
         border: solid 2px;
-        background-color: #d6d4d0;
+        background-color: lightgoldenrodyellow;
     }
 
     th {
@@ -182,6 +182,8 @@ const Main = styled.main`
     div > p {
         width: 95%;
         text-align: end;
+        margin-bottom: 10px;
+
     }
     div > p span {
         font-weight: 700;
@@ -211,7 +213,7 @@ const Main = styled.main`
     }
 
     .paymentMethod {
-        width: 160px;
+        width: 100%;
     }
 
     section form label,
@@ -224,10 +226,31 @@ const Main = styled.main`
         width: 225px;
         height: 45px;
         border-radius: 5px;
-        border: none;
-        background-color: var(--purple);
+        border: 1px solid;
+        background-color: #BA68C8;
         margin-bottom: 12px;
         font-size: 16px;
-        color: #ffffff;
+        
+    }
+
+    .adress {
+        margin-bottom: 10px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        background-color: lightgoldenrodyellow;
+        padding: 8px;
+        border-radius: 5px 5px 0 0;
+        border: 1px solid;
+    }
+
+    .payment-method-header {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        background-color: lightgoldenrodyellow;
+        padding: 8px;
+        border-radius: 5px 5px 0 0;
+        border: 1px solid;
     }
 `;

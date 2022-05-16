@@ -43,6 +43,10 @@ export default function CartProduct({ selectedProduct }) {
 const Row = styled.tr`
     img {
         max-width: 100px;
+        width: auto;
+        border-radius: 5px;
+        box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
+        margin: 10px 5px 10px 5px;
     }
 
     td {
