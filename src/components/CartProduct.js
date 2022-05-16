@@ -29,7 +29,7 @@ export default function CartProduct({ selectedProduct, index }) {
             let user = JSON.parse(localStorage.getItem("USER"));
             const cart = user.cart;
             cart.splice(index, 1);
-            console.log(user);
+            user.total -= product.price * selectedProduct.quantity;
             localStorage.setItem("USER", JSON.stringify(user));
             document.location.reload();
         }
