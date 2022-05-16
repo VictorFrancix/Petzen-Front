@@ -14,6 +14,7 @@ import ProductsPage from "./components/ProductsPage.js";
 import ProductDetailsPage from "./components/ProductDetailsPage.js";
 import GlobalStyle from "./assets/GlobalStyle/GlobalStyle.js";
 import UserContext from "./contexts/UserContext";
+import Logout from "./components/Logout.js";
 
 
 export default function App() {
@@ -34,6 +35,7 @@ export default function App() {
                 <GlobalStyle />
                     <Menu />
                     <Routes>
+                        <Route path="/" element={<Logout />} />
                         <Route path="/test" element={<TestPage />}></Route>
                         <Route path="/login" element={<Login />}></Route>
                         <Route path="/signup" element={<SignUp />}></Route>

@@ -49,7 +49,7 @@ export default function SignUp() {
 
     return (
         <MainStyle>
-            {loading ? <Loading /> : 
+            {loading ? <Loading color={"orange"} /> : 
             <>
             <h1>Petzen</h1>
             <form

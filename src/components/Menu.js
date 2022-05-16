@@ -2,6 +2,9 @@ import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import Logout from "./Logout";
+
+
 export default function Menu() {
 
     const [sidebar, setSidebar] = useState(false);
@@ -33,7 +36,7 @@ export default function Menu() {
                     </div>
                     <p>Pedidos</p>
                 </li>
-                <li>
+                <li onClick ={()=> <Logout />}>
                     <div className="options-icon">
                         <ion-icon name="exit"></ion-icon>
                     </div>

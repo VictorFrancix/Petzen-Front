@@ -50,7 +50,7 @@ export default function Login() {
     return (
         <MainStyle>
             {loading ? (
-                <Loading />
+                <Loading color={"orange"}/>
             ) : (
                 <>
                     <h1>PetZen</h1>
