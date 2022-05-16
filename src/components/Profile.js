@@ -225,6 +225,7 @@ export default function Profile() {
                         <p>
                             <span>Último pedido:</span>
                         </p>
+                        {profile.lastOrder}
                         <Order order={profile.lastOrder} />
 
                         <button
