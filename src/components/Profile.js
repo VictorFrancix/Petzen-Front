@@ -68,7 +68,6 @@ export default function Profile() {
             headers: { Authorization: `Bearer ${TOKEN}` },
         };
         let password = prompt("Insira sua senha");
-        console.log(password);
         if (password === "" || password === null) return;
         newUser.password = password;
 
@@ -88,9 +87,12 @@ export default function Profile() {
         promise.catch((err) => {
             if (err.response.status === 401) {
                 alert("Senha inválida!");
-                window.location.reload(false);
+            } else if( err.response.status === 422){
+                alert("Preencha os dados corretamente!");
+            } else {
+                Error(err);
             }
-            Error(err);
+            window.location.reload(false);
         });
     }
 
@@ -189,7 +191,8 @@ export default function Profile() {
                                             setNewUser({ ...newUser });
                                         }}
                                     />
-                                    <button className="cancel"
+                                    <button
+                                        className="cancel"
                                         onClick={() => {
                                             newUser.change.password = false;
                                             setNewUser({ ...newUser });
@@ -210,7 +213,7 @@ export default function Profile() {
                             )}
                         </li>
                     </ul>
-                    {newUser.change.name || newUser.change.email ? (
+                    {newUser.change.name || newUser.change.email || newUser.change.password ? (
                         <button onClick={editProfile}>Atualizar perfil</button>
                     ) : (
                         <></>
@@ -248,15 +251,17 @@ const Main = styled.main`
     }
 
     li {
-        display: flex;
         width: 90%;
+        display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
+        align-items: center;
         margin-bottom: 15px;
         font-size: 18px;
     }
 
-    li p span {
+    li p span,
+    & > div > p span {
         font-weight: 700;
         font-size: 20px;
     }
@@ -279,5 +284,29 @@ const Main = styled.main`
     li button.cancel {
         background-color: var(--purple);
         color: #ffffff;
+        height: 25px;
+        border-radius: 10px;
+    }
+
+    & > div {
+        margin-top: 15px;
+    }
+
+    & > div > p {
+        line-height: 34px;
+    }
+
+    & > button, & > div > button {
+    background-color: var(--purple);
+    border: none;
+    color: #FFFFFF;
+    height: 35px;
+    width: 150px;
+    border-radius: 15px;
+    font-size: 16px;
+    }
+
+    & > div > button{
+        width: 200px;
     }
 `;
