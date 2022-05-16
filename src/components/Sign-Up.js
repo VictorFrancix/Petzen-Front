@@ -113,7 +113,6 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-font-family: "Saira Stencil One", cursive;
 h1 {
     font-height: bold;
     color: #ffffff;
@@ -137,7 +136,6 @@ form {
     width: 100%;
 }
 button {
-    font-family: "Saira Stencil One", cursive;
     background-color: #c747fc;
     border: none;
     width: 31%;
@@ -163,7 +161,6 @@ button:disabled{
 }
 
 input{
-    font-family: "Saira Stencil One", cursive;
     width: 60%;
     max-width: 470px;
     height: 58px;

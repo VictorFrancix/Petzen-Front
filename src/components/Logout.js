@@ -19,8 +19,7 @@ export default function Logout() {
             "https://projeto14-petzen-back.herokuapp.com/logout"
         );
         promise.then(() => {
-            localStorage.removeItem("TOKEN");
-            localStorage.removeItem("NAME");
+            localStorage.clear()
             navigate("/");
             setLoading(false);
         });
