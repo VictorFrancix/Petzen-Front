@@ -128,7 +128,6 @@ const Main = styled.main`
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: var(--orange);
     height: 100vh;
 
     h2 {

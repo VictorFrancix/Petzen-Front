@@ -27,6 +27,12 @@ export default function Menu() {
                     </div>
                     <p>Carrinho</p>
                 </li>
+                <li onClick={() => goTo("profile")}>
+                    <div className="options-icon" >
+                    <ion-icon name="person"></ion-icon>
+                    </div>
+                    <p>Perfil</p>
+                </li>
                 <li onClick={() => goTo("orders")}>
                     <div className="options-icon" >
                         <ion-icon name="bag-check"></ion-icon>
@@ -69,6 +75,7 @@ export default function Menu() {
 
     let navigate = useNavigate();
     function goTo(page) {
+        setSidebar(false);
         navigate(`/${page}`);
     }
 
