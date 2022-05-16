@@ -3,10 +3,12 @@ import { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 
 import Order from "./Order";
+import Loading from "./Loading";
 import UserContext from "./../contexts/UserContext";
 
 export default function Orders() {
     const [orders, setOrders] = useState([]);
+    const [loading, setLoading] = useState(true);
     const TOKEN = localStorage.getItem("TOKEN");
     const { Error } = useContext(UserContext);
 
@@ -18,6 +20,7 @@ export default function Orders() {
         const promise = axios.get(`http://localhost:5000/sales`, config);
         promise.then((res) => {
             setOrders(res.data.reverse());
+            setLoading(false);
         });
         promise.catch((err) => {
             Error(err);
@@ -27,11 +30,15 @@ export default function Orders() {
 
     return (
         <Main>
-            <h2>Meus pedidos</h2>
-            {orders.length > 0 ? (
-                orders.map((order) => <Order order={order} />)
-            ) : (
-                <p>Você não tem nenhum pedido!</p>
+            {loading ? (<Loading />) : (
+                <>
+                    <h2>Meus pedidos</h2>
+                    {orders.length > 0 ? (
+                        orders.map((order) => <Order order={order} />)
+                    ) : (
+                        <p>Você não tem nenhum pedido!</p>
+                    )}
+                </>
             )}
         </Main>
     );

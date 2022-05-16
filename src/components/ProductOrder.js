@@ -17,7 +17,6 @@ export default function ProductOrder({ product, showDetails }) {
         );
         promise.then((res) => {
             setProductInfo(res.data);
-            console.log(res.data);
         });
         promise.catch((err) => {
             Error(err);
