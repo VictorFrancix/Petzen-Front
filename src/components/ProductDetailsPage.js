@@ -1,16 +1,17 @@
 import styled from "styled-components";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-import { useState, useContext, useEffect, useNavigate } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
 import UserContext from "./../contexts/UserContext.js";
 
 export default function ProductDetailsPage() {
     const { productId } = useParams();
-    const { user, setUser, Error } = useContext(UserContext);
+    const { Error } = useContext(UserContext);
     const [product, setProduct] = useState({});
     const [formatedPrice, setFormatedPrice] = useState("");
 
     const token = localStorage.getItem("TOKEN");
+    let user = JSON.parse(localStorage.getItem("USER"));
 
     useEffect(() => {
         const promise = axios.get(`https://projeto14-petzen-back.herokuapp.com/products/${productId}`);
@@ -38,22 +39,31 @@ export default function ProductDetailsPage() {
 
     function sendToCart() {
         let newCart = [];
+        console.log(product);
+        const qtd = 1;
         if (!user.cart) {
-            newCart = [product];
+            newCart = [{
+                idProduct: product._id
+            }];
             console.log("newCart: ", newCart);
         }
         else {
-            newCart = [...user.cart, product];
+            newCart = [...user.cart, 
+                {product: product._id, quantity: qtd}
+            ];
             console.log("newCart: ", newCart);
         }
 
+        const newTotal = parseFloat(user.total) + parseFloat(product.price.$numberDecimal);
+
         const newUser = {
             ...user,
-            cart: newCart
+            cart: newCart,
+            total: newTotal
         }
         console.log("newUser: ", newUser);
 
-        setUser(newUser);
+        localStorage.setItem("USER", JSON.stringify(newUser));
 
         nextPage();
     }
