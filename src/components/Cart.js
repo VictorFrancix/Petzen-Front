@@ -18,9 +18,10 @@ export default function Cart() {
         number: "",
     });
     const [buttonState, setButtonState] = useState(true);
-    const { user, setUser, Error } = useContext(UserContext);
+    const { Error } = useContext(UserContext);
 
     const TOKEN = localStorage.getItem("TOKEN");
+    let user = JSON.parse(localStorage.getItem("USER"));
 
     const cart = user.cart;
     let total = user.total;
@@ -49,7 +50,8 @@ export default function Cart() {
             config
         );
         promise.then((res) => {
-            setUser({ ...user, total: 0, cart: [] });
+            user = {...user, cart: [], total: 0};
+            localStorage.setItem("USER", JSON.stringify(user));
             navigate(`/orders`);
         });
         promise.catch((err) => {
@@ -128,7 +130,6 @@ const Main = styled.main`
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: var(--orange);
     height: 100vh;
 
     h2 {

@@ -66,6 +66,7 @@ const GlobalStyles = createGlobalStyle`
 
     body {
         font-family: 'Roboto', sans-serif;
+        background-color: var(--orange);
     }
 
     button:hover{

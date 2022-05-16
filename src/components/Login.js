@@ -27,13 +27,17 @@ export default function Login() {
             loginObj
         );
         promise.then((res) => {
-            const {token, name} = res.data;
+            const user = {
+                name: res.data.name,
+                cart: [],
+                total: 0
+            }
+            const token = res.data.token;
+            
             localStorage.setItem("TOKEN", token);
-            localStorage.setItem("NAME", name);
-            console.log(token);
+            localStorage.setItem("USER", JSON.stringify(user));
             navigate("/");
             setLoading(false);
-            setUser({ cart: [], total: 0 });
         });
         promise.catch((err) => {
             Error(err);
