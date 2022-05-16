@@ -1,14 +1,16 @@
 import styled from "styled-components";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useNavigate } from "react";
 import UserContext from "./../contexts/UserContext.js";
 
 export default function ProductDetailsPage() {
     const { productId } = useParams();
-    const { Error } = useContext(UserContext);
+    const { user, setUser, Error } = useContext(UserContext);
     const [product, setProduct] = useState({});
     const [formatedPrice, setFormatedPrice] = useState("");
+
+    const token = localStorage.getItem("TOKEN");
 
     useEffect(() => {
         const promise = axios.get(`https://projeto14-petzen-back.herokuapp.com/products/${productId}`);
@@ -23,6 +25,45 @@ export default function ProductDetailsPage() {
         // eslint-disable-next-line
     }, []);
 
+    function renderButton() {
+        return token ? (
+            <div className="container-button">
+                <button onClick={sendToCart}>
+                    <ion-icon name="cart-outline"></ion-icon>
+                    <p>Adicionar ao carrinho</p>
+                </button>
+            </div>
+        ) : <></>;
+    }
+
+    function sendToCart() {
+        let newCart = [];
+        if (!user.cart) {
+            newCart = [product];
+            console.log("newCart: ", newCart);
+        }
+        else {
+            newCart = [...user.cart, product];
+            console.log("newCart: ", newCart);
+        }
+
+        const newUser = {
+            ...user,
+            cart: newCart
+        }
+        console.log("newUser: ", newUser);
+
+        setUser(newUser);
+
+        nextPage();
+    }
+
+    const navigate = useNavigate();
+    function nextPage(){
+        navigate("/cart");
+    }
+
+
     return (
         <Div>
             <div className="container-details">
@@ -33,20 +74,13 @@ export default function ProductDetailsPage() {
                         <p className="price">Preço: R$ {formatedPrice}</p>
                     </div>
                 </div>
-                <div className="container-button">
-                    <button>
-                        <ion-icon name="cart-outline"></ion-icon>
-                        <p>Adicionar ao carrinho</p>
-                    </button>
-                </div>
+                {renderButton()}
                 <div className="container-description">
                     <p>Descrição</p>
                     <p>{product.description}</p>
                 </div>
                 <p className="store">Loja: {product.storeName}</p>
-                
             </div>
-
         </Div>
     );
 }
@@ -102,7 +136,7 @@ const Div = styled.div`
     }
 
     .container-button {
-        margin: 25px auto;
+        margin: 25px 0 0 0;
         width: 100%;
         display: flex;
         justify-content: center;
@@ -134,7 +168,7 @@ const Div = styled.div`
 
     .container-description p:first-of-type {
         font-weight: 400;
-        margin: 10px 2px 10px 0;
+        margin: 25px 2px 10px 0;
         background-color: #BA68C8;
         padding: 8px 8px 8px 15px;
         border-radius: 5px 5px 0 0;
