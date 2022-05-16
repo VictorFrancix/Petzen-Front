@@ -76,12 +76,14 @@ export default function Cart() {
                             <th>Preço Unit</th>
                             <th>Preço Total</th>
                         </tr>
-                        {cart.map((product, index) => (
+                        {cart.map((product, index) => {
+                            console.log("product: ", product);
+                            return (
                             <CartProduct
                                 selectedProduct={product}
                                 key={index}
                             />
-                        ))}
+                        )})}
                     </table>
                     <p>
                         <span>Frete: </span>R$ 5.00
