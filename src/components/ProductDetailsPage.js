@@ -15,7 +15,8 @@ export default function ProductDetailsPage() {
     let user = JSON.parse(localStorage.getItem("USER"));
 
     useEffect(() => {
-        const promise = axios.get(`https://projeto14-petzen-back.herokuapp.com/products/${productId}`);
+        // const promise = axios.get(`https://projeto14-petzen-back.herokuapp.com/products/${productId}`);
+        const promise = axios.get(`http://localhost:5000/products/${productId}`);
 
         promise.then((res) => {
             setProduct(res.data);

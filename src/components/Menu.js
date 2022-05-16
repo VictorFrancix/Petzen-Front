@@ -7,6 +7,7 @@ export default function Menu() {
     const [sidebar, setSidebar] = useState(false);
 
     const token = localStorage.getItem("TOKEN");
+    const user = JSON.parse(localStorage.getItem("USER"))
 
     function checkUserLoggedIn(token) {
         return token ? true : false;
@@ -14,38 +15,42 @@ export default function Menu() {
 
     function renderOptions() {
         return checkUserLoggedIn(token) ? (
-            <ul>
-                <li onClick={() => goTo("products")}>
-                    <div className="options-icon">
-                        <ion-icon name="paw"></ion-icon>
-                    </div>
-                    <p>Produtos</p>
-                </li>
-                <li onClick={() => goTo("cart")}>
-                    <div className="options-icon" >
-                        <ion-icon name="cart"></ion-icon>
-                    </div>
-                    <p>Carrinho</p>
-                </li>
-                <li onClick={() => goTo("profile")}>
-                    <div className="options-icon" >
-                    <ion-icon name="person"></ion-icon>
-                    </div>
-                    <p>Perfil</p>
-                </li>
-                <li onClick={() => goTo("orders")}>
-                    <div className="options-icon" >
-                        <ion-icon name="bag-check"></ion-icon>
-                    </div>
-                    <p>Pedidos</p>
-                </li>
-                <li>
-                    <div className="options-icon">
-                        <ion-icon name="exit"></ion-icon>
-                    </div>
-                    <p>Sair</p>
-                </li>
-            </ul>
+            
+                <ul>
+                    <li>
+                        <p>Olá, {user.name}</p>
+                    </li>
+                    <li onClick={() => goTo("products")}>
+                        <div className="options-icon">
+                            <ion-icon name="paw"></ion-icon>
+                        </div>
+                        <p>Produtos</p>
+                    </li>
+                    <li onClick={() => goTo("cart")}>
+                        <div className="options-icon" >
+                            <ion-icon name="cart"></ion-icon>
+                        </div>
+                        <p>Carrinho</p>
+                    </li>
+                    <li onClick={() => goTo("profile")}>
+                        <div className="options-icon" >
+                        <ion-icon name="person"></ion-icon>
+                        </div>
+                        <p>Perfil</p>
+                    </li>
+                    <li onClick={() => goTo("orders")}>
+                        <div className="options-icon" >
+                            <ion-icon name="bag-check"></ion-icon>
+                        </div>
+                        <p>Pedidos</p>
+                    </li>
+                    <li>
+                        <div className="options-icon">
+                            <ion-icon name="exit"></ion-icon>
+                        </div>
+                        <p>Sair</p>
+                    </li>
+                </ul>
         ) : (
             <ul>
                 <li onClick={() => goTo("login")}>

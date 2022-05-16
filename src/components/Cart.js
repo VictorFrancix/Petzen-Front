@@ -36,16 +36,21 @@ export default function Cart() {
             total,
             paymentMethod,
             address,
-            time: Date.now(),
-            idUser: "ovihfvwfiweuf",
+            time: Date.now()
         };
 
         const config = {
             headers: { Authorization: `Bearer ${TOKEN}` },
         };
 
+        // const promise = axios.post(
+        //     "https://projeto14-petzen-back.herokuapp.com/sales",
+        //     sale,
+        //     config
+        // );
+
         const promise = axios.post(
-            "https://projeto14-petzen-back.herokuapp.com/sales",
+            "http://localhost:5000/sales",
             sale,
             config
         );

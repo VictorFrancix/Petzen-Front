@@ -10,8 +10,8 @@ export default function TestPage(){
     async function sendText(event){
         event.preventDefault();
         try {
-            const response = await axios.post("https://projeto14-petzen-back.herokuapp.com/test", { text });
-            //const response = await axios.post("http://localhost:5000/test", { text });
+            // const response = await axios.post("https://projeto14-petzen-back.herokuapp.com/test", { text });
+            const response = await axios.post("http://localhost:5000/test", { text });
 
             const newTextFromDatabase = response.data;
             setTextFromDatabase(newTextFromDatabase);
