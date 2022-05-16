@@ -13,7 +13,8 @@ export default function ProductDetailsPage() {
     const token = localStorage.getItem("TOKEN");
 
     useEffect(() => {
-        const promise = axios.get(`https://projeto14-petzen-back.herokuapp.com/products/${productId}`);
+        // const promise = axios.get(`https://projeto14-petzen-back.herokuapp.com/products/${productId}`);
+        const promise = axios.get(`http://localhost:5000/products/${productId}`);
 
         promise.then((res) => {
             setProduct(res.data);

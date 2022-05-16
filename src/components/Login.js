@@ -22,8 +22,12 @@ export default function Login() {
 
     function requestAcess(loginObj) {
         setLoading(true);
+        // const promise = axios.post(
+        //     "https://projeto14-petzen-back.herokuapp.com/login",
+        //     loginObj
+        // );
         const promise = axios.post(
-            "https://projeto14-petzen-back.herokuapp.com/login",
+            "http://localhost:5000/login",
             loginObj
         );
         promise.then((res) => {

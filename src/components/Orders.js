@@ -14,10 +14,10 @@ export default function Orders() {
         const config = {
             headers: { Authorization: `Bearer ${TOKEN}` },
         };
-        const promise = axios.get(`https://projeto14-petzen-back.herokuapp.com/sales`, config);
+        // const promise = axios.get(`https://projeto14-petzen-back.herokuapp.com/sales`, config);
+        const promise = axios.get(`http://localhost:5000/sales`, config);
         promise.then((res) => {
             setOrders(res.data.reverse());
-            console.log(res.data);
         });
         promise.catch((err) => {
             Error(err);

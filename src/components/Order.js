@@ -8,7 +8,6 @@ import ProductOrder from "./ProductOrder";
 
 export default function Order({ order }) {
     const [showDetails, setShowDetails] = useState(false);
-    console.log(order);
 
     let percent;
 
@@ -198,7 +197,6 @@ const Section = styled.section`
         border: none;
         background: none;
         padding: 0;
-        color: var(--purple);
         margin-top: 8px;
     }
 `;
