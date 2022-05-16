@@ -81,6 +81,7 @@ export default function Cart() {
                             <CartProduct
                                 selectedProduct={product}
                                 key={index}
+                                index={index}
                             />
                         )})}
                     </table>
@@ -136,7 +137,7 @@ const Main = styled.main`
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    height: 100vh;
+    min-height: 100vh;
 
     h2 {
         font-size: 25px;
