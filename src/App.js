@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+// eslint-disable-next-line
 import styled from "styled-components";
 import { useState } from "react";
 
@@ -12,7 +13,7 @@ import Cart from "./components/Cart";
 import Orders from "./components/Orders";
 import ProductsPage from "./components/ProductsPage.js";
 import ProductDetailsPage from "./components/ProductDetailsPage.js";
-import GlobalStyle from "./assets/GlobalStyle/GlobalStyle";
+import GlobalStyle from "./assets/GlobalStyle/GlobalStyle.js";
 import UserContext from "./contexts/UserContext";
 
 
@@ -25,13 +26,13 @@ export default function App() {
     }
 
     return (
-            <UserContext.Provider value={{
-                user,
-                setUser,
-                Error
-            }}>
-                <BrowserRouter>
-                    <GlobalStyle />
+        <UserContext.Provider value={{
+            user,
+            setUser,
+            Error
+        }}>
+            <BrowserRouter>
+                <GlobalStyle />
                     <Menu />
                     <Routes>
                         <Route path="/test" element={<TestPage />}></Route>
@@ -42,7 +43,7 @@ export default function App() {
                         <Route path="/products" element={<ProductsPage />} />
                         <Route path="/products/:productId" element={<ProductDetailsPage />} />
                     </Routes>
-                </BrowserRouter>
-            </UserContext.Provider>
+            </BrowserRouter>
+        </UserContext.Provider>
     );
 }

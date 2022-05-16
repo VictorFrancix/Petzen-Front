@@ -13,7 +13,7 @@ export default function CartProduct({ selectedProduct }) {
             `https://projeto14-petzen-back.herokuapp.com/products/${selectedProduct.idProduct}`
         );
         promise.then((res) => {
-            setProduct({... res.data, price: parseFloat(res.data.price.$numberDecimal)});
+            setProduct({...res.data, price: parseFloat(res.data.price.$numberDecimal)});
         });
         promise.catch((err) => {
             Error(err);

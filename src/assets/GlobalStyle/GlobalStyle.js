@@ -59,8 +59,12 @@ const GlobalStyles = createGlobalStyle`
         --purple: #c747fc;
         --orange: #fa9a39;
     }
+
     * {
         box-sizing: border-box;
+    }
+
+    body {
         font-family: 'Roboto', sans-serif;
     }
 

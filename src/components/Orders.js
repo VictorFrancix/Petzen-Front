@@ -22,6 +22,7 @@ export default function Orders() {
         promise.catch((err) => {
             Error(err);
         });
+        // eslint-disable-next-line
     }, []);
 
     return (

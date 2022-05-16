@@ -56,7 +56,7 @@ const Div = styled.div`
     overflow-y: scroll;
     
     .loading-container {
-        height: 100%;
+        height: 100vh;
         width: 100vw;
         display: flex;
         flex-direction: column;

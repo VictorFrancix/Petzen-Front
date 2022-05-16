@@ -7,6 +7,7 @@ import Loading from "./Loading";
 import UserContext from "./../contexts/UserContext";
 
 export default function Login() {
+    // eslint-disable-next-line
     const { user, setUser, Error } = useContext(UserContext);
     const [login, setLogin] = useState({ email: "", password: "" });
     const [loading, setLoading] = useState(false);
