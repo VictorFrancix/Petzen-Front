@@ -13,7 +13,7 @@ export default function ProductOrder({ product, showDetails }) {
         //     `https://projeto14-petzen-back.herokuapp.com/products/${product.idProduct}`
         // );
         const promise = axios.get(
-            `http://localhost:5000/products/${product.idProduct}`
+            `http://localhost:5000/products/${product.product}`
         );
         promise.then((res) => {
             setProductInfo(res.data);

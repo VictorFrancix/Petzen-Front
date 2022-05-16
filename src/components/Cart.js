@@ -77,7 +77,6 @@ export default function Cart() {
                             <th>Preço Total</th>
                         </tr>
                         {cart.map((product, index) => {
-                            console.log("product: ", product);
                             return (
                             <CartProduct
                                 selectedProduct={product}
