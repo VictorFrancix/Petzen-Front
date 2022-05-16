@@ -9,6 +9,7 @@ export default function ProductDetailsPage() {
     const { Error } = useContext(UserContext);
     const [product, setProduct] = useState({});
     const [formatedPrice, setFormatedPrice] = useState("");
+    const [qtd, setQtd] = useState(1);
 
     const token = localStorage.getItem("TOKEN");
     let user = JSON.parse(localStorage.getItem("USER"));
@@ -26,9 +27,27 @@ export default function ProductDetailsPage() {
         // eslint-disable-next-line
     }, []);
 
+    function addQtd(){
+        setQtd(qtd + 1);
+    }
+
+    function subtractQtd(){
+        if (qtd > 0){
+            setQtd(qtd - 1);
+        } else {
+            setQtd(0);
+        }
+    }
+
     function renderButton() {
         return token ? (
-            <div className="container-button">
+            <div className="container-buttons">
+                <div className="container-quantity">
+                    <p>Qtd: </p>
+                    <button onClick={subtractQtd}>-</button>
+                    <p>{qtd}</p>
+                    <button onClick={addQtd}>+</button>
+                </div>
                 <button onClick={sendToCart}>
                     <ion-icon name="cart-outline"></ion-icon>
                     <p>Adicionar ao carrinho</p>
@@ -40,7 +59,6 @@ export default function ProductDetailsPage() {
     function sendToCart() {
         let newCart = [];
         console.log(product);
-        const qtd = 1;
         if (!user.cart) {
             newCart = [{
                 idProduct: product._id
@@ -54,7 +72,7 @@ export default function ProductDetailsPage() {
             console.log("newCart: ", newCart);
         }
 
-        const newTotal = parseFloat(user.total) + parseFloat(product.price.$numberDecimal);
+        const newTotal = parseFloat(user.total) + qtd*parseFloat(product.price.$numberDecimal);
 
         const newUser = {
             ...user,
@@ -145,15 +163,25 @@ const Div = styled.div`
         font-size: 18px;
     }
 
-    .container-button {
+    .container-buttons {
         margin: 25px 0 0 0;
         width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
     }
 
-    button {
+    .container-quantity {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        width: 40%;
+        justify-content: space-between;
+        margin-right: 10px;
+    }
+
+    .container-buttons > button {
         padding: 10px;
+        width: 70%;
         display: flex;
         align-items: center;
         border: 2px solid #293845;
@@ -162,17 +190,16 @@ const Div = styled.div`
         transition: all 0.3s;
     }
 
-    button:hover{
+    .container-buttons > button:hover{
         border: 2px solid #BA68C8;
         transition: all 0.3s;
     }
 
-    button ion-icon {
+    .container-buttons > button ion-icon {
         font-size: 22px;
-        margin-right: 10px;
     }
     
-    button p {
+    .container-buttons > button p {
         font-size: 15px;
     }
 
