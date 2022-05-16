@@ -7,7 +7,6 @@ import UserContext from "./../contexts/UserContext";
 export default function ProductOrder({ product, showDetails }) {
     const [productInfo, setProductInfo] = useState([]);
     const { Error } = useContext(UserContext);
-    console.log(product);
 
     useEffect(() => {
         // const promise = axios.get(
