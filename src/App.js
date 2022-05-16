@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// eslint-disable-next-line
 import { useState } from "react";
+// eslint-disable-next-line
 
 
 
@@ -12,9 +12,9 @@ import Cart from "./components/Cart";
 import Orders from "./components/Orders";
 import ProductsPage from "./components/ProductsPage.js";
 import ProductDetailsPage from "./components/ProductDetailsPage.js";
-import GlobalStyle from "./assets/GlobalStyle/GlobalStyle.js";
+import Profile from "./components/Profile.js";
+import GlobalStyle from "./assets/GlobalStyle/GlobalStyle";
 import UserContext from "./contexts/UserContext";
-import Logout from "./components/Logout.js";
 
 
 export default function App() {
@@ -35,10 +35,10 @@ export default function App() {
                 <GlobalStyle />
                     <Menu />
                     <Routes>
-                        <Route path="/" element={<Logout />} />
-                        <Route path="/test" element={<TestPage />}></Route>
-                        <Route path="/login" element={<Login />}></Route>
-                        <Route path="/signup" element={<SignUp />}></Route>
+                        <Route path="/test" element={<TestPage />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/signup" element={<SignUp />} />
+                        <Route path="/profile" element={<Profile />} />
                         <Route path="/cart" element={<Cart />} />
                         <Route path="/orders" element={<Orders />} />
                         <Route path="/products" element={<ProductsPage />} />
