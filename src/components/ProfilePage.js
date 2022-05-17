@@ -203,5 +203,8 @@ const Main = styled.main`
         justify-content: center;
         align-items: center;
         color: white;
+        position: absolute;
+        left: 50%;
+        top: 40%;
     }
 `;
