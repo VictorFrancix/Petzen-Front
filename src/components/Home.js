@@ -19,7 +19,9 @@ export default function Home() {
                 </article>
                 <article>
                     <h2> Adote um amigo!</h2>
-                    <img className = "adopt"src = {adopt} alt = "adopt" />
+                    <a href = "https://www.suipa.org.br/index.asp?pg=adocao.asp">
+                        <img className = "adopt"src = {adopt} alt = "adopt" />
+                    </a>
                     <p>Dê um lar a quem precisa...</p>
                 </article>
             </section>
