@@ -70,6 +70,13 @@ export default function Profile() {
         getProfile();
     }, []);
 
+    function checkLastOrder() {
+        for (const property in profile.lastOrder) {
+            return true;
+        }
+        return false;
+    }
+
     function editProfile() {
         const config = {
             headers: { Authorization: `Bearer ${TOKEN}` },
@@ -129,8 +136,8 @@ export default function Profile() {
                         <p>
                             <span>Último pedido:</span>
                         </p>
-                        { }
-                        <Order order={profile.lastOrder} />
+                        {checkLastOrder() ? (<>
+                            <Order order={profile.lastOrder} />
 
                         <button
                             onClick={() => {
@@ -139,6 +146,10 @@ export default function Profile() {
                         >
                             Ver todos os pedidos
                         </button>
+                        </>) :(<>
+                        <p>Você ainda não fez nenhuma compra!</p>
+                        </>)}
+                        
                     </div>
                 </>
             )}
