@@ -7,24 +7,29 @@ import dog_logout from "./../assets/images/dog_logout.png";
 import UserContext from "../contexts/UserContext";
 import Loading from "./Loading";
 
-export default function Logout() {
-    const {error} = useContext(UserContext);
+export default function Logout({setHiddenLogout, setSidebar}) {
+    const {Error} = useContext(UserContext);
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [hidden, setHidden] = useState(true);
 
     function logout() {
         setLoading(true);
-        const promise = axios.post(
-            "https://projeto14-petzen-back.herokuapp.com/logout"
+        console.log(localStorage.getItem("TOKEN"))
+        const config = { headers: { Authorization: `Bearer ${localStorage.getItem("TOKEN")}` } };
+        const promise = axios.delete(
+            "https://projeto14-petzen-back.herokuapp.com/logout", config
         );
         promise.then(() => {
             localStorage.clear()
-            navigate("/");
+            navigate("/login");
             setLoading(false);
+            setHidden(false);
+            setHiddenLogout(false);
+            setSidebar(false)
         });
         promise.catch((err) => {
-            error(err);
+            Error(err);
             setLoading(false);
         });
     }
@@ -33,11 +38,12 @@ export default function Logout() {
             <ArticleStyle hidden = {hidden} content = {loading}>
                 {loading ? <Loading color={"white"}/> : (
                 <>
-                    <h1>Você tem certeza ?</h1>                    
+                    <h4>Você tem certeza ?</h4>                    
                     <img className= {"pic"} src = {dog_logout} alt = "logout" />
                     <div className="Buttons">
                         <button onClick={() => logout()}> Sim </button>
-                        <button onClick={() => setHidden(false)}> Não </button>
+                        <button onClick={() => {setHidden(false)
+                        setHiddenLogout(false)}}> Não </button>
                     </div>
                 </>
                 )}
@@ -55,20 +61,22 @@ const ArticleStyle = styled.article`
     width: 30vw;
     position: absolute;
     top: 25%;
-    left: 35%;
+    left: 250%;
     border-radius: 10px;
     box-shadow: 0px 0px 10px #000000;
     background-color: #F5F5F5;
     z-index: 3;
     
     h2 {
+        
         font-size: 100%;
         line-height: 50px;
         margin-bottom: 
     }
     
-    h1 {
-        font-size: 100%;
+    h4 {
+        font-weight: 700;
+        font-size: 150%;
         text-align: center;
         margin: 8% 0;
         margin-top: 10% }
@@ -87,22 +95,37 @@ const ArticleStyle = styled.article`
 
     button {
         background-color: #FFF;
-        border: 1px solid #000;
-        border-radius: 10px;
+        border: none;
+        border-radius: 30px;
         margin: 10% 0;
         padding: 3%;
         width: 30%;
         font-size: 100%;
         cursor: pointer;
+        box-shadow: 0px 0px 3px #000000;
+        font-weight: 700;
     }
 
-    @media (max-width: 760px) {
+
+    @media (max-width: 700px) {
         width: 60vw;
-        height: 50vh;
-        left: 20%;
+        height: 40vh;
+        left: 60%;
 
         img{
-            width: 50%;
+            width: 30%;
         }
+    }
 
+    
+    @media (min-width: 700px) {
+        left : 160%
+    }
+
+    @media (min-width: 1200px) {
+        height: 45vh;
+        width: 30vw;
+        position: absolute;
+        top: 25%;
+        left: 250%;}
 `;

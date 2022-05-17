@@ -42,7 +42,7 @@ export default function ProductsPage() {
     ) : (
         <Div>
             <div className="loading-container">
-                <Loading />
+                <Loading color = {'orange'} />
             </div>
         </Div>
     )

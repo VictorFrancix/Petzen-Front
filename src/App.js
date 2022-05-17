@@ -7,6 +7,7 @@ import { useState } from "react";
 import TestPage from "./components/TestPage.js";
 import Login from "./components/Login";
 import SignUp from "./components/Sign-Up";
+import Home from "./components/Home";
 import Menu from "./components/Menu.js";
 import Cart from "./components/Cart";
 import Orders from "./components/Orders";
@@ -35,6 +36,7 @@ export default function App() {
                 <GlobalStyle />
                     <Menu />
                     <Routes>
+                        <Route path="/" element={<Home />} />
                         <Route path="/test" element={<TestPage />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<SignUp />} />

@@ -95,9 +95,10 @@ const MainStyle = styled.main`
     align-items: center;
     justify-content: center;
     h1 {
+        font-family: 'Righteous', cursive;
         font-weight: bold;
         color: #ffffff;
-        font-size: 32px;
+        font-size: 400%;
         line-height: 50px;
         margin: -5px 0px 24px;
     }
@@ -115,6 +116,7 @@ const MainStyle = styled.main`
         flex-direction: column;
         align-items: center;
         width: 100%;
+        margin-top: 10px;
     }
     button {
 
