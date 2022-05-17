@@ -1,10 +1,14 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState} from "react";
 import { useNavigate } from "react-router-dom";
+
+import Logout from "./Logout";
+
 
 export default function Menu() {
 
     const [sidebar, setSidebar] = useState(false);
+    const [hiddenLogout, setHiddenLogout] = useState(false);
 
     const token = localStorage.getItem("TOKEN");
     const user = JSON.parse(localStorage.getItem("USER"))
@@ -14,43 +18,39 @@ export default function Menu() {
     }
 
     function renderOptions() {
-        return checkUserLoggedIn(token) ? (
-            
-                <ul>
-                    <li>
-                        <p>Olá, {user.name}</p>
-                    </li>
-                    <li onClick={() => goTo("products")}>
-                        <div className="options-icon">
-                            <ion-icon name="paw"></ion-icon>
-                        </div>
-                        <p>Produtos</p>
-                    </li>
-                    <li onClick={() => goTo("cart")}>
-                        <div className="options-icon" >
-                            <ion-icon name="cart"></ion-icon>
-                        </div>
-                        <p>Carrinho</p>
-                    </li>
-                    <li onClick={() => goTo("profile")}>
-                        <div className="options-icon" >
-                        <ion-icon name="person"></ion-icon>
-                        </div>
-                        <p>Perfil</p>
-                    </li>
-                    <li onClick={() => goTo("orders")}>
-                        <div className="options-icon" >
-                            <ion-icon name="bag-check"></ion-icon>
-                        </div>
-                        <p>Pedidos</p>
-                    </li>
-                    <li>
-                        <div className="options-icon">
-                            <ion-icon name="exit"></ion-icon>
-                        </div>
-                        <p>Sair</p>
-                    </li>
-                </ul>
+        return hiddenLogout ? <Logout setHiddenLogout = {setHiddenLogout}  setSidebar = {setSidebar}/> : checkUserLoggedIn(token) ? (
+            <ul>
+                <li onClick={() => goTo("products")}>
+                    <div className="options-icon">
+                        <ion-icon name="paw"></ion-icon>
+                    </div>
+                    <p>Produtos</p>
+                </li>
+                <li onClick={() => goTo("cart")}>
+                    <div className="options-icon" >
+                        <ion-icon name="cart"></ion-icon>
+                    </div>
+                    <p>Carrinho</p>
+                </li>
+                <li onClick={() => goTo("profile")}>
+                    <div className="options-icon" >
+                    <ion-icon name="person"></ion-icon>
+                    </div>
+                    <p>Perfil</p>
+                </li>
+                <li onClick={() => goTo("orders")}>
+                    <div className="options-icon" >
+                        <ion-icon name="bag-check"></ion-icon>
+                    </div>
+                    <p>Pedidos</p>
+                </li>
+                <li onClick ={() => setHiddenLogout(true)}>
+                    <div className="options-icon">
+                        <ion-icon name="exit"></ion-icon>
+                    </div>
+                    <p>Sair</p>
+                </li>
+            </ul>
         ) : (
             <ul>
                 <li onClick={() => goTo("login")}>
@@ -102,6 +102,9 @@ export default function Menu() {
                 <ion-icon name="menu-outline"></ion-icon>
             </div>
             {renderSidebar()}
+            
+            <h1 onClick={()=> navigate("/")}>Petzen</h1>
+
         </Div>
     );
 }
@@ -169,4 +172,21 @@ const Div = styled.div`
         margin: 10px 0 10px 10px;
     }
 
+    h1{
+        font-family: 'Righteous', cursive;
+        font-size: 30px;
+        position: absolute;
+        color: #ffffff;
+        left: 47%;
+        top: 18%;
+    }
+
+    h1:hover{
+        cursor: pointer;
+    }
+    @media(max-width: 750px){
+        h1{
+            left:43%;
+        }
+    }
 `;

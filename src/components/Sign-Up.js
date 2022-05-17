@@ -50,57 +50,57 @@ export default function SignUp() {
 
     return (
         <MainStyle>
-            {loading ? <Loading /> :
-                <>
-                    <h1>Petzen</h1>
-                    <form
-                        onSubmit={(e) => {
-                            sendUser(e);
-                        }}
-                    >
-                        <input
-                            type="text"
-                            placeholder="Nome"
-                            value={registerUser.name}
-                            onChange={(e) => setregisterUser({ ...registerUser, name: e.target.value })}
-                            required
-                        />
-                        <input
-                            type="email"
-                            placeholder="Email"
-                            value={registerUser.email}
-                            disabled={loading}
-                            onChange={(e) =>
-                                setregisterUser({ ...registerUser, email: e.target.value })
-                            }
-                            required
-                        />
-                        <input
-                            type="password"
-                            placeholder="Senha"
-                            value={registerUser.password}
-                            disabled={loading}
-                            onChange={(e) =>
-                                setregisterUser({ ...registerUser, password: e.target.value })
-                            }
-                            required
-                        />
-                        <input
-                            type="password"
-                            placeholder="Confirme a senha"
-                            value={registerUser.confirm}
-                            disabled={loading}
-                            onChange={(e) => {
-                                setregisterUser({ ...registerUser, confirm: e.target.value })
-                            }
-                            }
-                            required
-                        />
-                        <button type="submit">Cadastrar</button>
-                    </form>
-                    <Link to="/login">Já tem uma conta? Entre agora!</Link>
-                </>
-            }
+            {loading ? <Loading color={"orange"} /> : 
+            <>
+            <h1>Petzen</h1>
+            <form
+                onSubmit={(e) => {
+                    sendUser(e);
+                }}
+            >
+                <input
+                    type="text"
+                    placeholder="Nome"
+                    value={registerUser.name}
+                    onChange={(e) => setregisterUser({ ...registerUser, name: e.target.value })}
+                    required
+                />
+                <input
+                    type="email"
+                    placeholder="Email"
+                    value={registerUser.email}
+                    disabled = {loading}
+                    onChange={(e) =>
+                        setregisterUser({ ...registerUser, email: e.target.value })
+                    }
+                    required
+                />
+                <input
+                    type="password"
+                    placeholder="Senha"
+                    value={registerUser.password}
+                    disabled = {loading}
+                    onChange={(e) =>
+                        setregisterUser({ ...registerUser, password: e.target.value })
+                    }
+                    required
+                />
+                <input
+                    type="password"
+                    placeholder="Confirme a senha"
+                    value={registerUser.confirm}
+                    disabled = {loading}
+                    onChange={(e) =>{
+                        setregisterUser({ ...registerUser, confirm: e.target.value })
+                    }
+                }
+                    required
+                />
+                <button type="submit">Cadastrar</button>
+            </form>
+            <Link to="/login">Já tem uma conta? Entre agora!</Link>
+            </>
+}
         </MainStyle>
     );
 }
@@ -114,7 +114,6 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-font-family: "Saira Stencil One", cursive;
 h1 {
     font-weight: bold;
     color: #ffffff;
@@ -138,7 +137,6 @@ form {
     width: 100%;
 }
 button {
-    font-family: "Saira Stencil One", cursive;
     background-color: #c747fc;
     border: none;
     width: 31%;
@@ -164,7 +162,6 @@ button:disabled{
 }
 
 input{
-    font-family: "Saira Stencil One", cursive;
     width: 60%;
     max-width: 470px;
     height: 58px;

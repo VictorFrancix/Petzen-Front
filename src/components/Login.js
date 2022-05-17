@@ -13,12 +13,6 @@ export default function Login() {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    function enableButton() {
-        if (login.email.length > 0 && login.password.length > 0) {
-            return false;
-        }
-        return true;
-    }
 
     function requestAcess(loginObj) {
         setLoading(true);
@@ -58,7 +52,7 @@ export default function Login() {
     return (
         <MainStyle>
             {loading ? (
-                <Loading />
+                <Loading color={"orange"}/>
             ) : (
                 <>
                     <h1>PetZen</h1>
@@ -83,7 +77,7 @@ export default function Login() {
                             }
                             required
                         />
-                        <button disabled={() => enableButton()} type="submit">
+                        <button type="submit">
                             Entrar
                         </button>
                     </form>
@@ -104,11 +98,11 @@ const MainStyle = styled.main`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-family: "Saira Stencil One", cursive;
     h1 {
+        font-family: 'Righteous', cursive;
         font-weight: bold;
         color: #ffffff;
-        font-size: 32px;
+        font-size: 400%;
         line-height: 50px;
         margin: -5px 0px 24px;
     }
@@ -126,9 +120,10 @@ const MainStyle = styled.main`
         flex-direction: column;
         align-items: center;
         width: 100%;
+        margin-top: 10px;
     }
     button {
-        font-family: "Saira Stencil One", cursive;
+
         background-color: #c747fc;
         border: none;
         width: 31%;
@@ -148,10 +143,6 @@ const MainStyle = styled.main`
         cursor: pointer;
     }
 
-    button:disabled {
-        background-color: #a09da1;
-        color: #ffffff00;
-    }
 
     input {
         width: 60%;
