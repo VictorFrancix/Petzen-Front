@@ -106,7 +106,9 @@ export default function Profile() {
     return (
         <Main>
             {loading ? (
-                <Loading />
+                <div className="loading">
+                    <Loading color = "orange" />
+                </div>
             ) : (
                 <>
                     <h2>Meu perfil</h2>
@@ -181,5 +183,14 @@ const Main = styled.main`
 
     & > div > button {
         width: 200px;
+    }
+
+    .loading {
+        width: 5%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
     }
 `;

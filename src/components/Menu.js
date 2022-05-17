@@ -134,6 +134,7 @@ const Div = styled.div`
         width: 230px;
         padding: 20px;
         animation: showSidebar 0.4s;
+        z-index: 2;
     }
 
     @keyframes showSidebar {

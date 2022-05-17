@@ -117,15 +117,20 @@ const ArticleStyle = styled.article`
         }
     }
 
+    @media (max-width: 500px) {
+        left : 40%;
+    }
+
     
     @media (min-width: 700px) {
         left : 160%
     }
-
+    
     @media (min-width: 1200px) {
         height: 45vh;
         width: 30vw;
         position: absolute;
         top: 25%;
-        left: 250%;}
+        left: 230%;}
+    
 `;

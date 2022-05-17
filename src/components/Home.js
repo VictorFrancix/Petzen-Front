@@ -83,6 +83,7 @@ const Main = styled.main`
     .adopt {
         width: 40%;
         border-radius: 20px;
+        margin-left: 28%;
 
     }
     @media (max-width: 760px) {
