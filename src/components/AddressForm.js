@@ -142,7 +142,7 @@ export default function AddressForm({ address, setAddress, setButtonState }) {
                     <button onClick={(e) => searchCEP(e)} disabled={false} >Pesquisar CEP</button>
                 </>
             ) : (
-                <>
+                <div className="address-search">
                     <button onClick={(e) => searchCEP(e)}>
                         Pesquisar endereço
                     </button>
@@ -154,7 +154,7 @@ export default function AddressForm({ address, setAddress, setButtonState }) {
                     >
                         Não sei meu CEP
                     </button>
-                </>
+                </div>
             )}
         </Container>
     );
@@ -181,5 +181,13 @@ const Container = styled.div`
 
     button{
         width: 305px;
+    }
+
+    .address-search {
+        margin-top: 10px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 `;

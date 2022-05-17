@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useContext} from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -7,7 +7,7 @@ import Loading from "./Loading";
 import UserContext from "./../contexts/UserContext";
 
 export default function SignUp() {
-    const {Error} = useContext(UserContext);
+    const { Error } = useContext(UserContext);
     const [loading, setLoading] = useState(false);
     const [registerUser, setregisterUser] = useState({
         name: "",
@@ -27,15 +27,16 @@ export default function SignUp() {
         }
         delete registerUser.confirm;
         const promise = axios.post("https://projeto14-petzen-back.herokuapp.com/signup", registerUser);
+        //const promise = axios.post("http://localhost:5000/signup", registerUser);
         promise.then(() => {
             navigate("/login");
         });
         promise.catch((err) => {
-            if(err.response.status === 409){
+            if (err.response.status === 409) {
                 alert("E-mail já cadastrado!");
                 setLoading(false)
             }
-            else{
+            else {
                 Error(err);
                 setLoading(false)
             }
@@ -114,7 +115,7 @@ flex-direction: column;
 align-items: center;
 justify-content: center;
 h1 {
-    font-height: bold;
+    font-weight: bold;
     color: #ffffff;
     font-size: 32px;
     line-height: 50px;
@@ -122,7 +123,7 @@ h1 {
 }
 
 h2 {
-    font-height: bold;
+    font-weight: bold;
     color: #ffffff;
     font-size: 25px;
     line-height: 50px;

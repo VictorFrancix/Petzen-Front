@@ -20,6 +20,10 @@ export default function Login() {
             "https://projeto14-petzen-back.herokuapp.com/login",
             loginObj
         );
+        //const promise = axios.post(
+        //    "http://localhost:5000/login",
+        //    loginObj
+        //);
         promise.then((res) => {
             const user = {
                 name: res.data.name,
@@ -27,7 +31,7 @@ export default function Login() {
                 total: 0
             }
             const token = res.data.token;
-            
+
             localStorage.setItem("TOKEN", token);
             localStorage.setItem("USER", JSON.stringify(user));
             navigate("/");

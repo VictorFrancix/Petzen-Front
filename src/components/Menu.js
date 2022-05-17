@@ -11,6 +11,7 @@ export default function Menu() {
     const [hiddenLogout, setHiddenLogout] = useState(false);
 
     const token = localStorage.getItem("TOKEN");
+    const user = JSON.parse(localStorage.getItem("USER"))
 
     function checkUserLoggedIn(token) {
         return token ? true : false;
