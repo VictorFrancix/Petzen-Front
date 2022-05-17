@@ -25,7 +25,7 @@ export default function Cart() {
 
     const cart = user.cart;
     let total = user.total;
-    
+
     const navigate = useNavigate();
 
     function sendSale(e) {
@@ -43,19 +43,19 @@ export default function Cart() {
             headers: { Authorization: `Bearer ${TOKEN}` },
         };
 
-        // const promise = axios.post(
-        //     "https://projeto14-petzen-back.herokuapp.com/sales",
-        //     sale,
-        //     config
-        // );
-
         const promise = axios.post(
-            "http://localhost:5000/sales",
+            "https://projeto14-petzen-back.herokuapp.com/sales",
             sale,
             config
         );
+
+        //const promise = axios.post(
+        //    "http://localhost:5000/sales",
+        //    sale,
+        //    config
+        //);
         promise.then((res) => {
-            user = {...user, cart: [], total: 0};
+            user = { ...user, cart: [], total: 0 };
             localStorage.setItem("USER", JSON.stringify(user));
             navigate(`/orders`);
         });
@@ -78,12 +78,13 @@ export default function Cart() {
                         </tr>
                         {cart.map((product, index) => {
                             return (
-                            <CartProduct
-                                selectedProduct={product}
-                                key={index}
-                                index={index}
-                            />
-                        )})}
+                                <CartProduct
+                                    selectedProduct={product}
+                                    key={index}
+                                    index={index}
+                                />
+                            )
+                        })}
                     </table>
                     <p>
                         <span>Frete: </span>R$ 5.00

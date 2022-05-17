@@ -15,8 +15,8 @@ export default function ProductDetailsPage() {
     let user = JSON.parse(localStorage.getItem("USER"));
 
     useEffect(() => {
-        // const promise = axios.get(`https://projeto14-petzen-back.herokuapp.com/products/${productId}`);
-        const promise = axios.get(`http://localhost:5000/products/${productId}`);
+        const promise = axios.get(`https://projeto14-petzen-back.herokuapp.com/products/${productId}`);
+        //const promise = axios.get(`http://localhost:5000/products/${productId}`);
 
         promise.then((res) => {
             setProduct(res.data);
@@ -28,12 +28,12 @@ export default function ProductDetailsPage() {
         // eslint-disable-next-line
     }, []);
 
-    function addQtd(){
+    function addQtd() {
         setQtd(qtd + 1);
     }
 
-    function subtractQtd(){
-        if (qtd > 0){
+    function subtractQtd() {
+        if (qtd > 0) {
             setQtd(qtd - 1);
         } else {
             setQtd(0);
@@ -67,13 +67,13 @@ export default function ProductDetailsPage() {
             console.log("newCart: ", newCart);
         }
         else {
-            newCart = [...user.cart, 
-                {product: product._id, quantity: qtd}
+            newCart = [...user.cart,
+            { product: product._id, quantity: qtd }
             ];
             console.log("newCart: ", newCart);
         }
 
-        const newTotal = parseFloat(user.total) + qtd*parseFloat(product.price.$numberDecimal);
+        const newTotal = parseFloat(user.total) + qtd * parseFloat(product.price.$numberDecimal);
 
         const newUser = {
             ...user,
@@ -88,7 +88,7 @@ export default function ProductDetailsPage() {
     }
 
     const navigate = useNavigate();
-    function nextPage(){
+    function nextPage() {
         navigate("/cart");
     }
 
